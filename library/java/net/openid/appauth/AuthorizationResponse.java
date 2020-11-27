@@ -466,6 +466,7 @@ public class AuthorizationResponse {
                 .setAuthorizationCode(authorizationCode)
                 .setAdditionalParameters(additionalExchangeParameters)
                 .setNonce(request.nonce)
+                .setScope(request.scope)
                 .build();
     }
 
