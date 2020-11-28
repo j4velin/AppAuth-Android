@@ -98,7 +98,22 @@ public class AuthorizationService {
                         clientConfiguration.getBrowserMatcher()),
                 new CustomTabManager(context));
     }
-
+	
+    /**
+     * Creates an AuthorizationService instance, which does not bind to a service and therefore
+     * can be used from a BroadcastReceiver or other background component. Can NOT be used for
+     * the initial authorization request!
+     */
+    public AuthorizationService(@NonNull Context context, boolean bindService) {
+        this(context,
+                AppAuthConfiguration.DEFAULT,
+                bindService ?
+                        BrowserSelector.select(
+                                context,
+                                AppAuthConfiguration.DEFAULT.getBrowserMatcher()) : null,
+                new CustomTabManager(context));
+    }
+	
     /**
      * Constructor that injects a url builder into the service for testing.
      */
